@@ -14,7 +14,7 @@ from .serializers import (UserProfileListSerializer, UserProfileDetailSerializer
                           UserRegisterSerializer, LoginSerializer)
 from .permissions import ChekRolePermission, ChekCourierPermission, CreateStorePermission
 from .filters import StoresFilterSet, ProductFilterSet
-from .pagination import StoresPagination, ProductPagination
+from .pagination import StoresSetPagination, ProductSetPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
@@ -82,7 +82,7 @@ class StoresListAPIView(generics.ListAPIView):
     filterset_class = StoresFilterSet
     ordering_fields = ['created_date']
     search_fields = ['store_name']
-    pagination_class = StoresPagination
+    pagination_class = StoresSetPagination
 
 class StoresDetailAPIView(generics.RetrieveAPIView):
     queryset = Stores.objects.all()
@@ -104,7 +104,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_class = ProductFilterSet
     ordering_fields = ['price']
     search_fields = ['product_name']
-    pagination_class = ProductPagination
+    pagination_class = ProductSetPagination
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
@@ -139,7 +139,7 @@ class ReviewCreteAPIView(generics.CreateAPIView):
     permission_classes = [ChekRolePermission]
 
 class ReviewEditAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Review.objects.all()
+    queryset = Review.  objects.all()
     serializer_class = ReviewCreateSerializer
     permission_classes = [ChekRolePermission]
 
